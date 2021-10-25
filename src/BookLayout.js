@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class BookLayout extends Component{
 
     static propTypes = {
-        books : PropTypes.array.isRequired,
+        // books : PropTypes.array.isRequired,
         updateShelf: PropTypes.func.isRequired   
     }
 
@@ -19,12 +19,14 @@ class BookLayout extends Component{
             value: newValue
         });
 
-    const { updateShelf} = this.props;
+    const {updateShelf} = this.props;
     updateShelf(this.props.book, newValue)
     }
 
     render(){
         const{book, updateShelf} = this.props;
+
+        console.log('update shelf', updateShelf);
       
         const { value } = this.state;
         
@@ -37,7 +39,7 @@ class BookLayout extends Component{
                 <div className="book-top">                        
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: book.imageLinks ? `url(${book.imageLinks.thumbnail})` : ''}}></div>
                     <div className="book-shelf-changer">
-                    <select value={value} onChange={this.handleChange} updateShelf={updateShelf} >
+                    <select value={value} onChange={this.handleChange}  >
                     <option value="move" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
